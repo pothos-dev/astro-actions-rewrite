@@ -1,0 +1,19 @@
+---
+let result: any = undefined
+if (Astro.request.method === "POST") {
+  const form = await Astro.request.formData()
+  const a = parseFloat(form.get("a") as string)
+  const b = parseFloat(form.get("b") as string)
+  result = { data: a + b }
+}
+---
+<html>
+	<body>
+		<form method="post">
+			<input type="number" name="a" value="1" />
+			<input type="number" name="b" value="2" />
+			<button type="submit">Sum</button>
+		</form>
+		<p>Form result: {JSON.stringify(result)}</p>
+	<body>
+</html>
